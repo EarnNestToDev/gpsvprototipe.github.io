@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "es_Mx">
+
+
+<!-- [ El Head ] -->
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "icon" type = "image/x-icon" href = "GPSPrototipe.ico" />
+    
+    <title>GPSPrototipe</title>
+    
+    <!-- Incluye la biblioteca de Leaflet y Firebase -->
+    <script src = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- Incluye la hoja de estilo de Leaflet -->
+    <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Incluye tu hoja de estilo personalizada -->
+    <link rel = "stylesheet" href = "./styles.css" />
+</head>
+
+
+<!-- [ Empieza el BodyCrunch ] -->
+<body>
+
+<!-- Encabezado -->
+<header id = "top">GPSPrototipe</header>
+
+<!-- Línea -->
+<section id = "linea">
+    <header id = "datatop">
+        <article id = "llbox">
+            <div id = "latbox">Latitud: - -</div>
+            <div id = "longbox">Longitud: - -</div>
+        </article>
+        <article id = "timebox">Última Actualización: - -</article>
+    </header>
+    
+    <!-- Contenedor del mapa -->
+    <div id = "map"></div>
+
+    <!-- Barra de acciones -->
+    <footer id = "acciones">
+        <button id = "btnvacio"></button>
+        <button id = "btnCentrar" onclick="CentrarMapa()"></button>
+        <button id = "btnComoLlegar" onclick="LlegarA()"></button>
+    </footer>
+</section>
+
+    <!-- Incluye tu script JavaScript -->
+    <script src = "./scripts/main.js"></script>
+</body>
+
+</html>
