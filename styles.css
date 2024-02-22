@@ -1,0 +1,214 @@
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 98vh;
+    flex-direction: column;
+}
+
+#top {
+    min-width: 95%;
+    max-width: 90%;
+    width: 95%;
+    height: 20%;
+    /* background-color: #032127; */
+    background-color: #0D4E59;
+    border-radius: 8px;
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+    justify-content: center;
+    color: #BEBEBE;
+    font-size: 30px;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    order: 1;
+}
+
+#linea {
+    width: 95%;
+    height: 95%;
+    min-height: 450px;
+    background-color: #24d8f860;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    border-radius: 8px;
+    margin-top: 5px;
+    order: 2;
+}
+
+#datatop {
+    min-width: 300px;
+    max-width: 90%;
+    width: 90%;
+    height: 25%;
+    /* border: 2px solid #00b7ff; */
+    background-color: #C6EFFC;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    color: #4C4C4C;
+    flex-wrap: wrap;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 2%;
+    /* padding: 8px; */
+    order: 1;
+    /* margin-left: 2%; */
+    /* border-left: 2%; */
+}
+
+#llbox{
+    /* width: 90%; */
+    height: 85%;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: #BEBEBE; */
+    margin-left: 2%;
+    order: 1;
+}
+
+#latbox, #longbox {
+    min-width: 30px;
+    /* max-width: 95%; */
+    /* width: 95%; */
+    height: 45%;
+    font-size: 15px;
+    background-color: #A0E9FD;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    order: 1;
+}
+
+#timebox {
+    /* width: 38%; */
+    height: 85%;
+    font-size: 15px;
+    background-color: #A0E9FD;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 2%;
+    flex-grow: 1;
+    order: 1;
+}
+
+#map {
+    min-width: 300px;
+    max-width: 90%;
+    min-height: 300px;
+    width: 100%;
+    height: 60%;
+    border: 3px solid #C6EFFC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 5px;
+    order: 2;
+}
+
+#acciones {
+    min-width: 300px;
+    max-width: 90%;
+    width: 90%;
+    height: 15%;
+    background-color: #C6EFFC;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-around;
+    color: #4C4C4C;
+    flex-wrap: wrap;
+    margin: 5px;
+    order: 3;
+
+}
+
+#btnvacio {
+    background-color: #0d4e5900;
+    display: flex;
+    margin: 5px ;
+    border-radius: 100%;
+    border: none;
+    padding: 25px 25px;
+    outline: none;
+    order: 1;
+}
+
+#btnCentrar {
+    color: #BEBEBE;
+    background-color: #0D4E59;
+    display: flex;
+    margin: 5px ;
+    border-radius: 50%;
+    border: #A0E9FD;
+    cursor: pointer;
+    padding: 25px 25px;
+    outline: none;
+    order: 2;
+    background-image: url(./img/marcador/location.png);
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    background-position:center;
+    background-size: 30px 30px;
+    /* animation: AnimRespiro 4s infinite ease-in-out; */
+    /* animation: girar 4s infinite; */
+}
+
+#btnCentrar:hover {
+    animation: girar 2s infinite;
+}
+
+#btnComoLlegar {
+    color: #BEBEBE;
+    background-color: #c51212;
+    display: flex;
+    margin: 5px;
+    border-radius: 50%;
+    border: #A0E9FD;
+    cursor: pointer;
+    padding: 25px 25px;
+    outline: none;
+    order: 3;
+    background-image: url(./img/marcador/google-maps.png);
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    background-position:center;
+    background-size: 30px 30px;
+    animation: deslizar 3s infinite;
+}
+
+
+@keyframes AnimRespiro {
+    0%, 100% {
+        /* transform: translateY(0); */
+        /* border: antiquewhite solid; */
+        /* box-shadow: inset 0 0 8px 0 antiquewhite; */
+    }
+    50% {
+        /* transform: translateY(-2px); */
+        /* border: aqua solid; */
+        box-shadow: inset 0 0 8px 0 aqua;
+    }
+}
+
+@keyframes deslizar {
+    0% {transform: translateX(0deg);}
+    50% {transform: translateX(2px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes girar {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
