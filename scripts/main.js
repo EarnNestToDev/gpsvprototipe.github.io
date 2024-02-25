@@ -1,5 +1,5 @@
 //#Main Script || Gracia Leaflet
-console.log("<< Cargando script... >>");
+//console.log("<< Cargando script... >>");
 
 // #Variables Globales
 var database; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
@@ -19,7 +19,7 @@ ConsultarPosActualFireStore();
 
 // #Conectarse a Firebase
 function IniciarConexConFireBase(){
-    console.log("<< Aplicando Conf. de Firebase >>");
+    //console.log("<< Aplicando Conf. de Firebase >>");
 
     // Configuración a Firebase
     const firebaseConfig = {
@@ -34,7 +34,7 @@ function IniciarConexConFireBase(){
     };
     
     // Inicializar conexión a Firebase
-    console.log("<< Iniciando Conexión a Firestore >>");
+    //console.log("<< Iniciando Conexión a Firestore >>");
     firebase.initializeApp(firebaseConfig);
     database = firebase.firestore();
 
@@ -49,7 +49,7 @@ function CargarMapa(){
     var long = -41.01388531708284;
 
     // Iniciar Mapa
-    console.log("<< Iniciando Mapa >>");
+    //console.log("<< Iniciando Mapa >>");
     map = L.map('map',{minZoom: 2}).setView([lat, long], 2);
     
     // Agregar Capa del Mapa
@@ -57,7 +57,7 @@ function CargarMapa(){
     var capamap = L.tileLayer(urlmap, {
         // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
-    console.log("<< Aplicando Capa >>");
+    //console.log("<< Aplicando Capa >>");
     capamap.addTo(map);
     
 
@@ -74,7 +74,7 @@ function CargarMapa(){
 
 // #Consultar la latitud y longitud desde FireStore y crear el marcador
 function ConsultarPosActualFireStore(){
-    console.log("<< Obteniendo Lat y Long >>");
+    //console.log("<< Obteniendo Lat y Long >>");
     //database.collection("GPS_DB").doc("Prototipo")
     database.collection(NBaseD).doc(NTabla)
         .onSnapshot((doc) => {
@@ -110,7 +110,7 @@ function MarcadorPosActual(latMPA, longMPA){
     }
 
     // Crear marcador y radio en el mapa
-    console.log("<< Creando Marcador >>");
+    //console.log("<< Creando Marcador >>");
     
     //Aplicar Icono
     /* var MyIcon = L.icon({
