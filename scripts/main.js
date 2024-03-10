@@ -84,9 +84,9 @@ function ConsultarPosActualFireStore(){
             var HTMLlat = document.getElementById('latbox');
             var HTMLLong = document.getElementById('longbox');
             var HTMLTime = document.getElementById('timebox');
-            HTMLlat.innerHTML = "Latitud: " + doc.get("Latitud");
-            HTMLLong.innerHTML = "Longitud: " + doc.get("Longitud");
-            HTMLTime.innerHTML = "Última Actualización:<br>" + doc.get("UltiUpdate");
+            HTMLlat.innerHTML = "<b>Latitud:</b>" + doc.get("Latitud");
+            HTMLLong.innerHTML = "<b>Longitud:</b>" + doc.get("Longitud");
+            HTMLTime.innerHTML = "<b>Última Actualización:</b><br></br>" + doc.get("UltiUpdate");
             MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));
 
             latActual = doc.get("Latitud");
