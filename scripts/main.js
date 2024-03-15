@@ -11,7 +11,7 @@ IniciarConexConFireBase();
 CargarMapa();
 ConsultarPosActualFireStore();
 //CentrarMapa();
-console.log("Hola "+ latActual + longActual);
+// console.log("Hola "+ latActual + longActual);
 
 //************************************************
 //***||      Funciones   ||*********************
@@ -92,7 +92,7 @@ function ConsultarPosActualFireStore(){
             HTMLBat.innerHTML = doc.get("Battery");
             
             MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));// ← Apartir de aquí ya no ejecuta
-            console.log("[ Aquí ]");
+            // console.log("[ Aquí ]");
             SetBateria(doc.get("Battery"));
             latActual = doc.get("Latitud");
             longActual = doc.get("Longitud");

@@ -7,10 +7,12 @@ body {
 }
 
 #top {
-    min-width: 95%;
-    max-width: 90%;
+    min-width: 350px;
+    /* max-width: 95%; */
+    min-height: 10%;
+    /* max-height: 30%; */
     width: 95%;
-    height: 20%;
+    height: 30%;
     /* background-color: #032127; */
     background-color: #0D4E59;
     border-radius: 8px;
@@ -57,6 +59,7 @@ body {
     width: 95%;
     height: 95%;
     min-height: 450px;
+    min-width: 350px;
     background-color: #24d8f860;
     display: flex;
     flex-direction: column;
@@ -133,9 +136,9 @@ body {
 
 #map {
     min-width: 300px;
-    max-width: 90%;
-    min-height: 300px;
-    width: 100%;
+    min-height: 50%;
+    /* max-height: 60%; */
+    width: 90%;
     height: 60%;
     border: 3px solid #C6EFFC;
     display: flex;
@@ -240,7 +243,7 @@ body {
 
 @keyframes deslizar {
     0% {transform: translateX(0deg);}
-    50% {transform: translateX(2px);}
+    50% {transform: translateX(3px);}
     100% {transform: translateX(0px);}
 }
 
