@@ -28,7 +28,10 @@
 <body>
 
 <!-- Encabezado -->
-<header id = "top">GPSVPrototipe</header>
+<header id = "top">
+    <section id="titlebox">GPSVPrototipe</section>
+    <section id="batterybox">0%</section>
+</header>
 
 <!-- Línea -->
 <section id = "linea">
@@ -45,7 +48,7 @@
 
     <!-- Barra de acciones -->
     <footer id = "acciones">
-        <button id = "btnvacio"></button>
+        <button id = "btninfo" onclick="PopUpInfo()"></button>
         <button id = "btnCentrar" onclick="CentrarMapa()"></button>
         <button id = "btnComoLlegar" onclick="LlegarA()"></button>
     </footer>

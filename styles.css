@@ -17,12 +17,40 @@ body {
     display: flex;
     margin-top: 5px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     color: #BEBEBE;
     font-size: 30px;
     /* font-family: 'Courier New', Courier, monospace; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     order: 1;
+    /* gap: 1%; */
+}
+
+#titlebox{
+    width: 68%;
+    height: 90%;
+    background-color: #2c6f7a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #BEBEBE;
+    font-size: 30px;
+
+}
+
+#batterybox{
+    width: 28%;
+    height: 90%;
+    background-color: lawngreen;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* color: #BEBEBE; */
+    color: whitesmoke;
+    font-size: 30px;
+
 }
 
 #linea {
@@ -136,15 +164,21 @@ body {
 
 }
 
-#btnvacio {
-    background-color: #0d4e5900;
+#btninfo {
+    background-color: #0D4E59;
     display: flex;
     margin: 5px ;
-    border-radius: 100%;
+    border-radius: 50%;
     border: none;
+    cursor: pointer;
     padding: 25px 25px;
     outline: none;
+    /* font-size: 5px; */
     order: 1;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    background-position:center;
+    background-size: 30px 30px;
 }
 
 #btnCentrar {

@@ -2,7 +2,7 @@
 //console.log("<< Cargando script... >>");
 
 // #Variables Globales
-var database; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
+var database, HTMLBat; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
 let map, MMarcador, MRadio, latActual, longActual;
 let NBaseD = "GPS_DB", NTabla = "Prototipo";
 
@@ -11,7 +11,7 @@ IniciarConexConFireBase();
 CargarMapa();
 ConsultarPosActualFireStore();
 //CentrarMapa();
-
+console.log("Hola "+ latActual + longActual);
 
 //************************************************
 //***||      Funciones   ||*********************
@@ -60,7 +60,7 @@ function CargarMapa(){
     //console.log("<< Aplicando Capa >>");
     capamap.addTo(map);
     
-
+    // Consultar disponibilidad de la geolocalización en el navegador
     if (!navigator.geolocation) {
         alert("Tu navegador no soporta la función de geolocalización!");
     } else {
@@ -84,11 +84,16 @@ function ConsultarPosActualFireStore(){
             var HTMLlat = document.getElementById('latbox');
             var HTMLLong = document.getElementById('longbox');
             var HTMLTime = document.getElementById('timebox');
+            HTMLBat = document.getElementById('batterybox');
+
             HTMLlat.innerHTML = "<b>Latitud:</b>" + doc.get("Latitud");
             HTMLLong.innerHTML = "<b>Longitud:</b>" + doc.get("Longitud");
             HTMLTime.innerHTML = "<b>Última Actualización:</b><br>" + doc.get("UltiUpdate") + "</br>";
-            MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));
-
+            HTMLBat.innerHTML = doc.get("Battery");
+            
+            MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));// ← Apartir de aquí ya no ejecuta
+            console.log("[ Aquí ]");
+            SetBateria(doc.get("Battery"));
             latActual = doc.get("Latitud");
             longActual = doc.get("Longitud");
             
@@ -99,7 +104,6 @@ function ConsultarPosActualFireStore(){
 
 // #Crear marcador en el mapa en la posición actual
 function MarcadorPosActual(latMPA, longMPA){
-
     // Borrar marcador y radio sí existe
     if (MMarcador) {
         map.removeLayer(MMarcador);
@@ -136,27 +140,29 @@ function MarcadorPosActual(latMPA, longMPA){
 
 // #Centrar mapa en posición actual
 function CentrarMapa() {
-    // Remueve el Radio para que no estorbe durante el zoom animado
-    map.removeLayer(MRadio);
+    if(latActual == undefined || longActual == undefined){
+        alert("[ ! ] Por favor asegurese de tener una conexión estable a internet");
+    }else{
+        // Remueve el Radio para que no estorbe durante el zoom animado
+        map.removeLayer(MRadio);
 
+        if (latActual !== undefined && longActual !== undefined) {
+            map.flyTo([latActual, longActual], 15);
+            //console.log(latActual + " | " + longActual);
+        } else {
+            alert("No se han obtenido coordenadas de latitud y longitud.");
+        }
 
-    if (latActual !== undefined && longActual !== undefined) {
-        map.flyTo([latActual, longActual], 15);
-        //console.log(latActual + " | " + longActual);
-    } else {
-        alert("No se han obtenido coordenadas de latitud y longitud.");
+        // Evita un bug gráfico al momento de hacer el zoom animado
+        setTimeout(function(){
+            MRadio = L.circle([latActual, longActual], {
+                //color: '#A0E9FD',
+                fillColor: '#A0E9FD',
+                radius: 150,
+                fillOpacity: 0.4});
+            var posaprox = L.featureGroup([MMarcador, MRadio]).addTo(map);
+        }, 1000);
     }
-
-    // Evita un bug gráfico al momento de hacer el zoom animado
-    setTimeout(function(){
-        MRadio = L.circle([latActual, longActual], {
-            //color: '#A0E9FD',
-            fillColor: '#A0E9FD',
-            radius: 150,
-            fillOpacity: 0.4});
-        var posaprox = L.featureGroup([MMarcador, MRadio]).addTo(map);
-    }, 1000);
-
 }//Fin
 
 
@@ -167,7 +173,31 @@ function LlegarA(){
 
     // Abre el enlace en una nueva ventana
     window.open(enlace, "_blank");
+    
+}//Fin
 
+
+// #PopUp
+function PopUpInfo(){
+    alert("Aún voy a ver que programar aquí");
+}
+
+
+// #Set estado de la batería
+function SetBateria(bat){
+    // console.log("<< Estableciendo estado de la batería >>");
+    if(bat <= 0 || bat == undefined){
+        HTMLBat.innerHTML = "Sin bateria";
+    }else{
+        HTMLBat.innerHTML = bat + "%";
+    }
+
+    // if(latActual !== undefined || longActual !== undefined){
+    //     alert("Conectao");
+    // }else{
+    //     alert("[ ! ] Por favor asegurese de tener una conexión estable a internet");
+    // }
+    
 }//Fin
 
 
