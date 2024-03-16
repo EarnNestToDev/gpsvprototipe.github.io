@@ -213,7 +213,7 @@ function SetBateria(bat){
     }else if(bat >= 11 && bat <= 20){
         document.getElementById("batterybox").style.backgroundColor = "orangered";
 
-    }else if(bat >= 21 && bat <= 49){
+    }else if(bat >= 21 && bat <= 50){
         document.getElementById("batterybox").style.backgroundColor = "orange";
         
     }else if(bat >= 51 && bat <= 80){
