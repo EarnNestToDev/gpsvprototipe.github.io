@@ -2,16 +2,16 @@
 //console.log("<< Cargando script... >>");
 
 // #Variables Globales
-var database, HTMLBat; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
+var database, HTMLTitle, HTMLBat, HTMLlat, HTMLLong, HTMLTime, HTMLRescConex; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
 let map, MMarcador, MRadio, latActual, longActual;
 let NBaseD = "GPS_DB", NTabla = "Prototipo";
+
+HTMLTitle = document.getElementById('titlebox');
 
 // #Funciones
 IniciarConexConFireBase();
 CargarMapa();
 ConsultarPosActualFireStore();
-//CentrarMapa();
-// console.log("Hola "+ latActual + longActual);
 
 //************************************************
 //***||      Funciones   ||*********************
@@ -81,16 +81,19 @@ function ConsultarPosActualFireStore(){
             //const datatoString = JSON.stringify(doc.data());
             //console.log("Current data: ", datatoString);
             //console.log(doc.get("Latitud"));
-            var HTMLlat = document.getElementById('latbox');
-            var HTMLLong = document.getElementById('longbox');
-            var HTMLTime = document.getElementById('timebox');
+            HTMLlat = document.getElementById('latbox');
+            HTMLLong = document.getElementById('longbox');
+            HTMLTime = document.getElementById('timebox');
             HTMLBat = document.getElementById('batterybox');
 
+            HTMLRescConex = doc.get("Battery");
             HTMLlat.innerHTML = "<b>Latitud:</b>" + doc.get("Latitud");
             HTMLLong.innerHTML = "<b>Longitud:</b>" + doc.get("Longitud");
             HTMLTime.innerHTML = "<b>Última Actualización:</b><br>" + doc.get("UltiUpdate") + "</br>";
             HTMLBat.innerHTML = doc.get("Battery");
             
+            VerificarConex(HTMLRescConex);//Meter en un update?
+
             MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));// ← Apartir de aquí ya no ejecuta
             // console.log("[ Aquí ]");
             SetBateria(doc.get("Battery"));
@@ -183,6 +186,18 @@ function PopUpInfo(){
 }
 
 
+// #VerificarConex
+function VerificarConex(ramdomdata){
+    if(ramdomdata != undefined){
+        // alert("[ ! ] Por favor asegurese de tener una conexión estable a internet !!");
+        HTMLTitle.innerHTML = "GPSVPrototipe";
+    }else{
+        HTMLTitle.innerHTML = "Sin conexión";
+    }
+    HTMLRescConex = undefined;
+}
+
+
 // #Set estado de la batería
 function SetBateria(bat){
     // console.log("<< Estableciendo estado de la batería >>");
@@ -199,6 +214,18 @@ function SetBateria(bat){
     // }
     
 }//Fin
+
+
+// #Agregar animación al botón
+document.getElementById('btnCentrar').addEventListener('click', function() {
+    var btn = this;
+    btn.classList.add('girar');
+
+    // Después de 2 segundos, quitar la clase de animación
+    setTimeout(function() {
+        btn.classList.remove('girar');
+    }, 2000); // Duración de la animación en milisegundos
+});//Fin
 
 
 // Fin

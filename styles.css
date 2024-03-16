@@ -9,10 +9,10 @@ body {
 #top {
     min-width: 350px;
     /* max-width: 95%; */
-    min-height: 10%;
+    min-height: 30px;
     /* max-height: 30%; */
     width: 95%;
-    height: 30%;
+    height: 20%;
     /* background-color: #032127; */
     background-color: #0D4E59;
     border-radius: 8px;
@@ -58,7 +58,7 @@ body {
 #linea {
     width: 95%;
     height: 95%;
-    min-height: 450px;
+    min-height: 21.875rem; /* 350px */
     min-width: 350px;
     background-color: #24d8f860;
     display: flex;
@@ -71,7 +71,7 @@ body {
 }
 
 #datatop {
-    min-width: 300px;
+    min-width: 350px;
     max-width: 90%;
     width: 90%;
     height: 25%;
@@ -136,10 +136,10 @@ body {
 
 #map {
     min-width: 300px;
-    min-height: 50%;
+    min-height: 30%;
     /* max-height: 60%; */
     width: 90%;
-    height: 60%;
+    height: 50%;
     border: 3px solid #C6EFFC;
     display: flex;
     align-items: center;
@@ -204,9 +204,6 @@ body {
     /* animation: girar 4s infinite; */
 }
 
-#btnCentrar:hover {
-    animation: girar 2s infinite;
-}
 
 #btnComoLlegar {
     color: #BEBEBE;
@@ -228,6 +225,11 @@ body {
 }
 
 
+
+/* ***********************
+***   Animaciones   ***
+*********************** */
+
 @keyframes AnimRespiro {
     0%, 100% {
         /* transform: translateY(0); */
@@ -248,6 +250,14 @@ body {
 }
 
 @keyframes girar {
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
-}
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .girar {
+    animation: girar 2s forwards;
+  }
