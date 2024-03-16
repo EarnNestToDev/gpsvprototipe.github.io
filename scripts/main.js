@@ -217,7 +217,7 @@ function SetBateria(bat){
         document.getElementById("batterybox").style.backgroundColor = "orange";
         
     }else if(bat >= 51 && bat <= 80){
-        document.getElementById("batterybox").style.backgroundColor = "yellow";
+        document.getElementById("batterybox").style.backgroundColor = "gold";
         
     }else{
         document.getElementById("batterybox").style.backgroundColor = "lawngreen";
