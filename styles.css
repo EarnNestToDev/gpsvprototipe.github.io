@@ -44,7 +44,7 @@ body {
 #batterybox{
     width: 28%;
     height: 90%;
-    background-color: lawngreen;
+    background-color: dimgray;
     border-radius: 8px;
     display: flex;
     align-items: center;

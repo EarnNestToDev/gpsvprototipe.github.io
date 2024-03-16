@@ -164,7 +164,7 @@ function CentrarMapa() {
                 radius: 150,
                 fillOpacity: 0.4});
             var posaprox = L.featureGroup([MMarcador, MRadio]).addTo(map);
-        }, 1000);
+        }, 3000);
     }
 }//Fin
 
@@ -182,7 +182,7 @@ function LlegarA(){
 
 // #PopUp
 function PopUpInfo(){
-    alert("Aún voy a ver que programar aquí");
+    alert("Creo que haré un popup informativo... O un popup de configuración??");
 }
 
 
@@ -201,18 +201,29 @@ function VerificarConex(ramdomdata){
 // #Set estado de la batería
 function SetBateria(bat){
     // console.log("<< Estableciendo estado de la batería >>");
-    if(bat <= 0 || bat == undefined){
+    HTMLBat.innerHTML = bat + "%";
+
+    if(bat <= 5 || bat == undefined){
         HTMLBat.innerHTML = "Sin bateria";
+        document.getElementById("batterybox").style.backgroundColor = "dimgray";
+
+    }else if(bat >= 5 && bat <= 10){
+        document.getElementById("batterybox").style.backgroundColor = "crimson";
+
+    }else if(bat >= 11 && bat <= 20){
+        document.getElementById("batterybox").style.backgroundColor = "orangered";
+
+    }else if(bat >= 21 && bat <= 49){
+        document.getElementById("batterybox").style.backgroundColor = "orange";
+        
+    }else if(bat >= 51 && bat <= 80){
+        document.getElementById("batterybox").style.backgroundColor = "yellow";
+        
     }else{
-        HTMLBat.innerHTML = bat + "%";
+        document.getElementById("batterybox").style.backgroundColor = "lawngreen";
+        
     }
 
-    // if(latActual !== undefined || longActual !== undefined){
-    //     alert("Conectao");
-    // }else{
-    //     alert("[ ! ] Por favor asegurese de tener una conexión estable a internet");
-    // }
-    
 }//Fin
 
 
