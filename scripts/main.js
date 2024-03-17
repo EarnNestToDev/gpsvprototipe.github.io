@@ -134,7 +134,7 @@ function MarcadorPosActual(latMPA, longMPA){
     MRadio = L.circle([latMPA, longMPA], {
         //color: '#A0E9FD',
         fillColor: '#A0E9FD',
-        radius: 150,
+        radius: 200,
         fillOpacity: 0.4});
     var posaprox = L.featureGroup([MMarcador, MRadio]).addTo(map);
 
