@@ -2,11 +2,13 @@
 //console.log("<< Cargando script... >>");
 
 // #Variables Globales
-var database, HTMLTitle, HTMLBat, HTMLlat, HTMLLong, HTMLTime, HTMLRescConex; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
+var database, HTMLTitle, HTMLBat, HTMLlat, HTMLLong, HTMLTime, HTMLRescConex, HTMLCharger; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
 let map, MMarcador, MRadio, latActual, longActual;
 let NBaseD = "GPS_DB", NTabla = "Prototipo";
 
 HTMLTitle = document.getElementById('titlebox');
+HTMLCharger = document.getElementById("charger");
+HTMLBat = document.getElementById('batterybox');
 
 // #Funciones
 IniciarConexConFireBase();
@@ -84,19 +86,19 @@ function ConsultarPosActualFireStore(){
             HTMLlat = document.getElementById('latbox');
             HTMLLong = document.getElementById('longbox');
             HTMLTime = document.getElementById('timebox');
-            HTMLBat = document.getElementById('batterybox');
+            // HTMLBat = document.getElementById('batterybox');
 
             HTMLRescConex = doc.get("Battery");
             HTMLlat.innerHTML = "<b>Latitud:</b>" + doc.get("Latitud");
             HTMLLong.innerHTML = "<b>Longitud:</b>" + doc.get("Longitud");
             HTMLTime.innerHTML = "<b>Última Actualización:</b><br>" + doc.get("UltiUpdate") + "</br>";
-            HTMLBat.innerHTML = doc.get("Battery");
+            // HTMLCharger.innerHTML = doc.get("Battery");
             
             VerificarConex(HTMLRescConex);//Meter en un update?
-
+            SetBateria(doc.get("Battery"));
             MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));// ← Apartir de aquí ya no ejecuta
             // console.log("[ Aquí ]");
-            SetBateria(doc.get("Battery"));
+            
             latActual = doc.get("Latitud");
             longActual = doc.get("Longitud");
             
@@ -201,30 +203,39 @@ function VerificarConex(ramdomdata){
 // #Set estado de la batería
 function SetBateria(bat){
     // console.log("<< Estableciendo estado de la batería >>");
-    HTMLBat.innerHTML = bat + "%";
-
+    // HTMLBat.innerHTML = bat + "%";
     if(bat <= 5 || bat == undefined){
-        HTMLBat.innerHTML = "Sin bateria";
-        document.getElementById("batterybox").style.backgroundColor = "dimgray";
-
+        // HTMLBat.innerHTML = "Sin batería";
+        DatosBatterybox(bat + "%", "dimgray", "'Sin batería'");
     }else if(bat >= 5 && bat <= 10){
-        document.getElementById("batterybox").style.backgroundColor = "crimson";
+        DatosBatterybox(bat + "%", "crimson", "'"+bat + "%'");
 
     }else if(bat >= 11 && bat <= 20){
-        document.getElementById("batterybox").style.backgroundColor = "orangered";
+        DatosBatterybox(bat + "%", "orangered", "'"+bat + "%'");
 
     }else if(bat >= 21 && bat <= 50){
-        document.getElementById("batterybox").style.backgroundColor = "orange";
-        
+        DatosBatterybox(bat + "%", "orange", "'"+bat + "%'");
+
     }else if(bat >= 51 && bat <= 80){
-        document.getElementById("batterybox").style.backgroundColor = "gold";
+        DatosBatterybox(bat + "%", "gold", "'"+bat + "%'");
+        
+    }else if(bat >= 81 && bat <= 100){
+        DatosBatterybox(bat + "%", "lawngreen", "'"+bat + "%'");
         
     }else{
-        document.getElementById("batterybox").style.backgroundColor = "lawngreen";
+        DatosBatterybox(0, "dimgray", "???");
         
     }
 
 }//Fin
+
+
+// #Ajuste
+function DatosBatterybox(ancho, color, porciento){
+    HTMLBat.style.setProperty('--nuevo-ancho-before', ancho);
+    HTMLBat.style.setProperty('--batterybox-before-background-color', color);
+    HTMLBat.style.setProperty('--batterybox-after-content', porciento);
+}
 
 
 // #Agregar animación al botón
