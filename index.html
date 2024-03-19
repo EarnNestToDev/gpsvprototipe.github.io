@@ -19,7 +19,7 @@
     <!-- Incluye la hoja de estilo de Leaflet -->
     <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
-    <!-- Incluye tu hoja de estilo personalizada -->
+    <!-- Incluye el CSS Styles -->
     <link rel = "stylesheet" href = "./styles.css" />
 </head>
 
@@ -34,7 +34,7 @@
 </header>
 
 <!-- Línea -->
-<section id = "linea">
+<main id = "linea">
     <header id = "datatop">
         <article id = "llbox">
             <div id = "latbox">Latitud: - -</div>
@@ -44,7 +44,7 @@
     </header>
     
     <!-- Contenedor del mapa -->
-    <div id = "map"></div>
+    <section id = "map"></section>
 
     <!-- Barra de acciones -->
     <footer id = "acciones">
@@ -52,9 +52,9 @@
         <button id = "btnCentrar" onclick="CentrarMapa()"></button>
         <button id = "btnComoLlegar" onclick="LlegarA()"></button>
     </footer>
-</section>
+</main>
 
-    <!-- Incluye tu script JavaScript -->
+    <!-- Incluye el Script de JavaScript -->
     <script src = "./scripts/main.js"></script>
 </body>
 

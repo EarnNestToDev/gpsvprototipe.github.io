@@ -66,6 +66,7 @@ body {
     background-color: var(--batterybox-before-background-color, rgba(255, 255, 255, 0));
     border-radius: 8px;
     z-index: 10;
+    /* filter: drop-shadow(0 0 8px red); */
 }
 
 #batterybox::after{
@@ -117,8 +118,9 @@ body {
 #datatop {
     min-width: 350px;
     max-width: 90%;
+    /* min-height: 10px; */
     width: 90%;
-    height: 25%;
+    height: 20%;
     /* border: 2px solid #00b7ff; */
     background-color: #C6EFFC;
     display: flex;
@@ -180,7 +182,7 @@ body {
 
 #map {
     min-width: 300px;
-    min-height: 30%;
+    min-height: 10%;
     /* max-height: 60%; */
     width: 90%;
     height: 50%;
@@ -194,10 +196,10 @@ body {
 }
 
 #acciones {
-    min-width: 300px;
+    min-width: 350px;
     max-width: 90%;
     width: 90%;
-    height: 15%;
+    /* height: 15%; */
     background-color: #C6EFFC;
     display: flex;
     flex-direction: row;
@@ -206,7 +208,9 @@ body {
     justify-content: space-around;
     color: #4C4C4C;
     flex-wrap: wrap;
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 2%;
+    /* padding-bottom: 5px; */
     order: 3;
 
 }
