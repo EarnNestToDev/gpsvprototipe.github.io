@@ -1,6 +1,10 @@
 //#Main Script || Gracia Leaflet
 //console.log("<< Cargando script... >>");
 
+/* ***********************
+***         Main       ***
+*********************** */
+
 // #Variables Globales
 var database, HTMLTitle, HTMLBat, HTMLlat, HTMLLong, HTMLTime, HTMLRescConex, HTMLCharger; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
 let map, MMarcador, MRadio, latActual, longActual;
@@ -15,9 +19,10 @@ IniciarConexConFireBase();
 CargarMapa();
 ConsultarPosActualFireStore();
 
-//************************************************
-//***||      Funciones   ||*********************
-//********************************************
+
+/* ***********************
+***     Funciones      ***
+*********************** */
 
 // #Conectarse a Firebase
 function IniciarConexConFireBase(){
