@@ -7,8 +7,20 @@
 
 // #Variables Globales
 var database, HTMLTitle, HTMLBat, HTMLlat, HTMLLong, HTMLTime, HTMLRescConex, HTMLCharger; // no puede ser una constante porque se le aplica otro valor en la parte IniciarConexConFireBase();
+var HTMLTop, HTMLTitlebox, HTMLLinea, HTMLDatatop, HTMLLatitudbox, HTMLLongitudbox, HTMLFechabox, HTMLMap, HTMLAcciones, HTMLBtninfo;
 let map, MMarcador, MRadio, latActual, longActual;
-let NBaseD = "GPS_DB", NTabla = "Prototipo";
+let NBaseD = "GPS_DB", NTabla = "Prototipo", ModO = false;
+
+HTMLTop = document.getElementById('top');
+HTMLTitlebox = document.getElementById('titlebox');
+HTMLLinea = document.getElementById('linea');
+HTMLDatatop = document.getElementById('datatop');
+HTMLLatitudbox = document.getElementById('latbox');
+HTMLLongitudbox = document.getElementById('longbox');
+HTMLFechabox = document.getElementById('timebox');
+HTMLMap = document.getElementById('map');
+HTMLAcciones = document.getElementById('acciones');
+HTMLBtninfo = document.getElementById('btninfo');
 
 HTMLTitle = document.getElementById('titlebox');
 HTMLCharger = document.getElementById("charger");
@@ -87,10 +99,11 @@ function ConsultarPosActualFireStore(){
         .onSnapshot((doc) => {
             //const datatoString = JSON.stringify(doc.data());
             //console.log("Current data: ", datatoString);
-            //console.log(doc.get("Latitud"));
+            // console.log(doc.get("Latitud"));
             HTMLlat = document.getElementById('latbox');
             HTMLLong = document.getElementById('longbox');
             HTMLTime = document.getElementById('timebox');
+            // HTMLCharger = document.getElementById('chargerbox');
             // HTMLBat = document.getElementById('batterybox');
 
             HTMLRescConex = doc.get("Battery");
@@ -101,11 +114,13 @@ function ConsultarPosActualFireStore(){
             
             VerificarConex(HTMLRescConex);//Meter en un update?
             SetBateria(doc.get("Battery"));
+            SetModOscuro(doc.get("ModOscuro"));
             MarcadorPosActual(doc.get("Latitud"), doc.get("Longitud"));// ← Apartir de aquí ya no ejecuta
             // console.log("[ Aquí ]");
             
             latActual = doc.get("Latitud");
             longActual = doc.get("Longitud");
+            ModO = doc.get("ModOscuro");//Aquí para que no le dé otro valor el si conexión
             
         });
 
@@ -124,7 +139,7 @@ function MarcadorPosActual(latMPA, longMPA){
     }
 
     // Crear marcador y radio en el mapa
-    //console.log("<< Creando Marcador >>");
+    // console.log("<< Creando Marcador >>");
     
     //Aplicar Icono
     /* var MyIcon = L.icon({
@@ -189,8 +204,36 @@ function LlegarA(){
 
 // #PopUp
 function PopUpInfo(){
-    alert("Creo que haré un popup informativo... O un popup de configuración??");
-}
+    // alert("Creo que haré un popup informativo... O un popup de configuración??");
+
+}//Fin
+
+
+// #Switch Oscuro
+function SwitchModOscuro(){
+    var usuarioRef = database.collection(NBaseD).doc(NTabla); // Obtener referencia al documento en Firestore
+
+    if(ModO){
+        //Cambiar a ligth
+        usuarioRef.update({
+            ModOscuro: false
+        }).then(() => {
+            // console.log('Datos actualizados exitosamente.');
+        }).catch((error) => {
+            // console.error('Error al actualizar los datos:', error);
+        });
+    }else{
+        //Cambiar a dark
+        usuarioRef.update({
+            ModOscuro: true
+        }).then(() => {
+            // console.log('Datos actualizados exitosamente.');
+        }).catch((error) => {
+            // console.error('Error al actualizar los datos:', error);
+        });
+    }
+    // Actualizar el campo 'Battery' en Firestore
+}//Fin
 
 
 // #VerificarConex
@@ -240,7 +283,7 @@ function DatosBatterybox(ancho, color, porciento){
     HTMLBat.style.setProperty('--nuevo-ancho-before', ancho);
     HTMLBat.style.setProperty('--batterybox-before-background-color', color);
     HTMLBat.style.setProperty('--batterybox-after-content', porciento);
-}
+}//Fin
 
 
 // #Agregar animación al botón
@@ -253,6 +296,59 @@ document.getElementById('btnCentrar').addEventListener('click', function() {
         btn.classList.remove('girar');
     }, 2000); // Duración de la animación en milisegundos
 });//Fin
+
+
+// #Modo Oscuro
+function SetModOscuro(MO){
+    if(!MO){
+        // Interfaz Ligth
+        // console.log("<< Modo Ligth >>");
+        // Top
+        HTMLTop.style.setProperty('--top-background-color', "#0D4E59");
+        HTMLBat.style.setProperty('--batterybox-background-color', "dimgray");
+        HTMLTitlebox.style.setProperty('--titlebox-background-color', "#2C6F7A");
+        
+        // Linea
+        HTMLLinea.style.setProperty('--linea-background-color', "#ADF0FC");
+        HTMLDatatop.style.setProperty('--datatop-background-color', "#C6EFFC");
+        HTMLLatitudbox.style.setProperty('--datatopvarios-background-color', "#A0E9FD");
+        HTMLLatitudbox.style.setProperty('--datatopvarios-color', "#5F4F4C");
+        HTMLLongitudbox.style.setProperty('--datatopvarios-background-color', "#A0E9FD");
+        HTMLLongitudbox.style.setProperty('--datatopvarios-color', "#5F4F4C");
+        HTMLTime.style.setProperty('--datatopvarios-background-color', "#A0E9FD");
+        HTMLTime.style.setProperty('--datatopvarios-color', "#5F4F4C");
+        // HTMLMap.style.setProperty('--map-background-color', "#C6EFFC");
+        HTMLMap.style.border = "3px solid #C6EFFC";
+        HTMLAcciones.style.setProperty('--acciones-background-color', "#C6EFFC");
+        HTMLBtninfo.style.setProperty('--btninfo-background-color', "#0D4E59");
+        document.body.style.backgroundColor = "white";
+
+    }else{
+        // Interfaz Dark
+        // console.log("<< Modo Dark >>");
+        // Top
+        HTMLTop.style.setProperty('--top-background-color', "#031525");
+        HTMLBat.style.setProperty('--batterybox-background-color', "#AFAFAF");
+        HTMLTitlebox.style.setProperty('--titlebox-background-color', "#083862");
+        
+        // Linea
+        HTMLLinea.style.setProperty('--linea-background-color', "#071A2B");
+        HTMLDatatop.style.setProperty('--datatop-background-color', "#162C46");
+        HTMLLatitudbox.style.setProperty('--datatopvarios-background-color', "#071A2B");
+        HTMLLatitudbox.style.setProperty('--datatopvarios-color', "#C2D3FF");
+        HTMLLongitudbox.style.setProperty('--datatopvarios-background-color', "#071A2B");
+        HTMLLongitudbox.style.setProperty('--datatopvarios-color', "#C2D3FF");
+        HTMLTime.style.setProperty('--datatopvarios-background-color', "#071A2B");
+        HTMLTime.style.setProperty('--datatopvarios-color', "#C2D3FF");
+        // HTMLMap.style.setProperty('--map-background-color', "#162C46");
+        HTMLMap.style.border = "3px solid #162C46";
+        HTMLAcciones.style.setProperty('--acciones-background-color', "#162C46");
+        HTMLBtninfo.style.setProperty('--btninfo-background-color', "#031525");
+        document.body.style.backgroundColor = "#191E29";
+        
+    }
+}//Fin
+
 
 
 // Fin
