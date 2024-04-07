@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<html lang = "es_Mx">
+<html lang = "es">
 
 
 <!-- [ El Head ] -->
 <head>
-    <meta charset = "UTF-8">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <meta
+    charset = "UTF-8">
+    
+    <meta
+    name = "viewport"
+    content = "width=device-width, initial-scale=1.0">
+
+    <meta
+    name = "description"
+    content = "GPSVPrototipe es un mapa vizualizador
+                web para la aplicación GPSSPrototipe.">
 
     <link rel = "icon" type = "image/x-icon" href = "GPSPrototipe.ico" />
     
     <title>GPSVPrototipe</title>
-    
+
+    <!-- Incluye la hoja de estilo de Leaflet -->
+    <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel = "preconnect" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" />
+    <link rel = "preconnect" href = "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" />
+    <link rel = "preconnect" href = "https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" />
+
+    <!-- Incluye el CSS Styles -->
+    <link rel = "stylesheet" href = "./styles.css" />
+
     <!-- Incluye la biblioteca de Leaflet y Firebase -->
     <script src = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src = "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src = "https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-    <!-- Incluye la hoja de estilo de Leaflet -->
-    <link rel = "stylesheet" href = "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
-    <!-- Incluye el CSS Styles -->
-    <link rel = "stylesheet" href = "./styles.css" />
+    
 </head>
 
 
@@ -48,9 +62,9 @@
 
     <!-- Barra de acciones -->
     <footer id = "acciones">
-        <button id = "btninfo" onclick="SwitchModOscuro()"></button>
-        <button id = "btnCentrar" onclick="CentrarMapa()"></button>
-        <button id = "btnComoLlegar" onclick="LlegarA()"></button>
+        <button id = "btninfo" title="Botón Información" onclick = "SwitchModOscuro()"></button>
+        <button id = "btnCentrar" title="Botón Buscar" onclick = "CentrarMapa()"></button>
+        <button id = "btnComoLlegar" title="Botón Cómo Llegar" onclick = "LlegarA()"></button>
     </footer>
 </main>
 

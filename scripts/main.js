@@ -1,6 +1,3 @@
-> .[!NOTE].
-    > Sigo trabajando en features!
-
 //#Main Script || Gracia Leaflet
 //console.log("<< Cargando script... >>");
 
