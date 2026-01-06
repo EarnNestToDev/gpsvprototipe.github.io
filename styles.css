@@ -2,7 +2,7 @@
 ***      Diseño        ***
 *********************** */
 
-body {
+body{
     margin: 0;
     display: flex;
     align-items: center;
@@ -11,7 +11,7 @@ body {
     /* background-color: var(--body-background-color, black); */
 }
 
-#top {
+#top{
     min-width: 350px;
     /* max-width: 95%; */
     min-height: 30px;
